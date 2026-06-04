@@ -1,0 +1,2 @@
+(self.webpackChunk=self.webpackChunk||[]).push([["2031"],{29912(e,i,n){"use strict";n.r(i),n.d(i,{definition:()=>t.InteractionsDefinition,impl:()=>s.InteractionsService});var t=n(37741),s=n(76627)},50590(e){e.exports=self.React}}]);
+//# sourceMappingURL=platformInteractionsService.eb3cd838.chunk.min.js.map

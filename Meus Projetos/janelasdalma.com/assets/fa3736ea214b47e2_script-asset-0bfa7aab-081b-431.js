@@ -1,0 +1,2 @@
+import{v as t}from"./site.ch.B9Krvpyq.js";import{I as b}from"./component.ch.CkAerx1x.js";import"react";import"./clsx.ch.CH7BE6MN.js";import"./dataUtils.ch.DHnDlbWS.js";import"./a11y.ch.juTbIwij.js";import"./Link.ch.BYIEvhjR.js";import"./index.ch.BhywUINL.js";import"./customElementInit.ch.WJNNrK8b.js";import"./_commonjsHelpers.ch.DitNtjSD.js";const{injectGetAccessToken:a}=t("6a30caff-5dc3-4e4c-ba70-19db988f5830");export{b as default,a as injectAccessTokenGetter};
+//# sourceMappingURL=script-asset-0bfa7aab-081b-431b-adb2-1b1062e8f21a.ch.C-zhBgi3.js.map

@@ -1,0 +1,2 @@
+const u=(t,s=0,{leading:i=!1,trailing:n=!0}={})=>{let e=null;return function(...r){i&&e===null&&t.apply(this,r),e&&clearTimeout(e),!n||!i||e?e=setTimeout(()=>{n&&t.apply(this,r),e=null},s):e=setTimeout(()=>{e=null},s)}},o=()=>typeof window<"u",a=t=>!t||Object.keys(t).length===0&&t.constructor===Object,c=()=>/^((?!chrome|android).)*safari/i.test(navigator==null?void 0:navigator.userAgent),l=t=>Object.entries(t).reduce((s,[i,n])=>(i.includes("data-")&&(s[i]=n),s),{});export{c as a,a as b,u as d,l as g,o as i};
+//# sourceMappingURL=utils.ch.9A21AE0N.js.map

@@ -1,0 +1,2 @@
+const c=t=>Object.entries(t).reduce((e,[n,u])=>(n.includes("data-")&&(e[n]=u),e),{}),r=(t,e)=>t?{"data-comp":e,"data-aid":e}:{},d=t=>!t||Object.keys(t).length===0&&t.constructor===Object;let s=null,a=0;function o(t,e){t=t||"",e=e||"";const n=Date.now();return n===s?a++:(s=n,a=0),t+e+Number(s).toString(36)+(a||"")}export{r as a,o as b,c as g,d as i};
+//# sourceMappingURL=dataUtils.ch.DHnDlbWS.js.map

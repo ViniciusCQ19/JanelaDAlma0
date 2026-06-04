@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="intro-lock">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Janelas da Alma — hero editorial">
+<title>Janelas da Alma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { jakarta: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'] }
+    }
+  }
+};
+</script>
+<link rel="stylesheet" href="assets/hero/hero.css?v=20260604-1550">
+<link rel="stylesheet" href="assets/hero/fold-two.css?v=20260604-1550">
+</head>
+<body class="antialiased font-jakarta bg-[#b49c78] min-h-screen">
+<div class="site-intro" aria-hidden="true">
+<div class="site-intro-card">
+<span class="site-intro-glow"></span>
+<img class="site-intro-logo" src="assets/hero/logo-janelas-da-alma-clear.png?v=20260604-1313" alt="" width="582" height="207">
+<span class="site-intro-line"></span>
+<span class="site-intro-note">um convite para olhar devagar</span>
+</div>
+</div>
+<div class="reading-progress" aria-hidden="true"></div>
+<div class="ambient-orbs" aria-hidden="true">
+<span class="ambient-orb ambient-orb--one"></span>
+<span class="ambient-orb ambient-orb--two"></span>
+</div>
+
+<main class="max-w-7xl mx-auto px-6 lg:px-8 py-8 sm:py-12">
+<div class="page-shell sm:p-10 lg:p-14 shadow-[0_2.8px_2.2px_rgba(0,0,0,0.034),0_6.7px_5.3px_rgba(0,0,0,0.048),0_12.5px_10px_rgba(0,0,0,0.06),0_22.3px_17.9px_rgba(0,0,0,0.072),0_41.8px_33.4px_rgba(0,0,0,0.086),0_100px_80px_rgba(0,0,0,0.12)] bg-green-50 rounded-3xl p-6">
+
+<!-- Nav -->
+<nav class="site-nav relative z-10" aria-label="Navegação principal">
+<div class="site-nav-pill flex items-center gap-2 sm:gap-3 bg-white rounded-full px-3 sm:px-4 py-2.5 sm:py-3 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+
+<a href="#" class="nav-brand flex items-center gap-2 shrink-0" aria-label="Janelas da Alma — início">
+<img class="nav-brand-logo" src="assets/hero/logo-janelas-da-alma-clear.png?v=20260604-1313" alt="Janelas da Alma" width="582" height="207">
+</a>
+
+<ul class="nav-links hidden lg:flex items-center flex-1 justify-center gap-4 xl:gap-6 min-w-0">
+<li><a href="#" class="nav-link is-active" aria-current="page"><span class="nav-link-stack"><span class="nav-link-face">Início</span><span class="nav-link-face nav-link-face--alt" aria-hidden="true">Início</span></span><span class="nav-link-line" aria-hidden="true"></span></a></li>
+<li><a href="HorizontesDaMinhaM.html" class="nav-link nav-link--wide"><span class="nav-link-stack"><span class="nav-link-face">Horizontes da minha mente</span><span class="nav-link-face nav-link-face--alt" aria-hidden="true">Horizontes da minha mente</span></span><span class="nav-link-line" aria-hidden="true"></span><span class="nav-link-spark" aria-hidden="true"></span></a></li>
+<li><a href="#" class="nav-link"><span class="nav-link-stack"><span class="nav-link-face">Pensadores</span><span class="nav-link-face nav-link-face--alt" aria-hidden="true">Pensadores</span></span><span class="nav-link-line" aria-hidden="true"></span></a></li>
+<li><a href="#" class="nav-link nav-link--wide"><span class="nav-link-stack"><span class="nav-link-face">Essências para a alma</span><span class="nav-link-face nav-link-face--alt" aria-hidden="true">Essências para a alma</span></span><span class="nav-link-line" aria-hidden="true"></span></a></li>
+</ul>
+
+<div class="flex items-center gap-1.5 sm:gap-2 ml-auto shrink-0">
+<button type="button" class="nav-toggle lg:hidden flex items-center justify-center w-9 h-9 rounded-full text-slate-700 hover:bg-slate-100 transition" aria-expanded="false" aria-controls="nav-drawer" aria-label="Abrir menu">
+<svg class="nav-toggle-icon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+</button>
+
+<a href="#" class="nav-cta hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#8a6a43] text-xs sm:text-sm font-semibold text-white shadow-sm shrink-0"><span class="nav-cta-text">Entrar</span></a>
+</div>
+</div>
+
+<div id="nav-drawer" class="nav-drawer lg:hidden" hidden>
+<ul class="nav-drawer-list">
+<li><a href="#" class="nav-drawer-link is-active" aria-current="page">Início</a></li>
+<li><a href="HorizontesDaMinhaM.html" class="nav-drawer-link">Horizontes da minha mente</a></li>
+<li><a href="#" class="nav-drawer-link">Pensadores</a></li>
+<li><a href="#" class="nav-drawer-link">Essências para a alma</a></li>
+</ul>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="mt-10 sm:mt-12 grid md:grid-cols-2 gap-10 lg:gap-14 items-center" aria-labelledby="hero-title">
+
+<!-- Copy -->
+<div class="hero-copy">
+<div class="hero-badge">
+<span class="hero-badge-dot" aria-hidden="true"></span>
+<span>Composição editorial · Edição I</span>
+</div>
+
+<h1 id="hero-title" class="hero-title text-4xl sm:text-5xl lg:text-6xl font-semibold text-slate-900 tracking-tight leading-[1.05]">
+<span class="hero-title-line">A alma por trás das</span>
+<span class="hero-title-line italic font-medium text-slate-800">janelas</span>
+</h1>
+
+<div class="hero-rule" aria-hidden="true"></div>
+
+<p class="hero-lead mt-6 text-lg max-w-lg text-slate-600 leading-relaxed">
+Sou exploradora de sentimentos e guardiã de pausas. Acredito que cada olhar carrega uma história — e que a beleza mora nos detalhes que quase passam despercebidos.
+</p>
+<p class="hero-sub mt-4 text-base max-w-lg text-slate-500 leading-relaxed">
+Neste espaço, imagem e palavra conversam em silêncio. Uma direção de arte feita para quem reconhece presença e o refinamento do essencial.
+</p>
+
+<div class="hero-actions mt-8 flex flex-wrap gap-4">
+<a href="#" class="hero-btn hero-btn--primary group">
+<span>Entrar na narrativa</span>
+<svg class="hero-btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+<a href="#" class="hero-btn hero-btn--ghost group">
+<span>Manifesto</span>
+<svg class="hero-btn-icon hero-btn-icon--ghost" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4h8v8H4z" stroke="currentColor" stroke-width="1.1"/><path d="M6 8h4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+</a>
+</div>
+
+<div class="hero-stats mt-14 flex items-start gap-10 sm:gap-12">
+<div class="hero-stat"><p class="hero-stat-num" data-count="12">12</p><p class="hero-stat-label">anos de olhar</p></div>
+<div class="w-px h-12 hidden sm:block bg-slate-300/80" aria-hidden="true"></div>
+<div class="hero-stat"><p class="hero-stat-num italic">∞</p><p class="hero-stat-label">pausas guardadas</p></div>
+<div class="w-px h-12 hidden md:block bg-slate-300/80" aria-hidden="true"></div>
+<div class="hero-stat hidden md:block"><p class="hero-stat-num" data-count="3" data-pad="2">03</p><p class="hero-stat-label">séries abertas</p></div>
+</div>
+
+<p class="hero-footnote mt-8 text-[10px] tracking-[0.22em] uppercase text-slate-400">Presença · Refinamento · Identidade</p>
+</div>
+
+<!-- Collage -->
+<div class="collage-zone relative flex justify-center md:justify-end py-4">
+<span class="collage-deco" aria-hidden="true">✦</span>
+<div class="collage-wrap" id="collage-wrap">
+
+<figure class="collage-arch">
+<img class="collage-arch-img" src="assets/hero/foto-principal.jpg" alt="Retrato principal — Janelas da Alma" width="420" height="480" loading="eager" fetchpriority="high">
+<div class="collage-arch-gradient" aria-hidden="true"></div>
+<div class="collage-arch-caption">
+<p class="meta">Retrato em destaque</p>
+<p class="title">Janelas da Alma</p>
+</div>
+<button class="collage-play" type="button" aria-label="Ver composição">
+<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+</figure>
+
+<div class="collage-card-dark">
+<div class="collage-card-dark-inner">
+<div class="collage-card-dark-photo">
+<img src="assets/hero/foto-secundaria.jpg" alt="Luz e sombra — editorial" width="180" height="180" loading="lazy">
+</div>
+<div class="collage-card-dark-caption">
+<p class="meta">Edição I · 2026</p>
+<p class="title">Luz &amp; Sombra</p>
+</div>
+</div>
+</div>
+
+<div class="collage-card-ticket">
+<div class="collage-card-ticket-inner">
+<div class="collage-card-ticket-content">
+<div class="collage-card-ticket-photo">
+<img src="assets/hero/foto-terciaria.jpg" alt="Presença e olhar" width="200" height="150" loading="lazy">
+</div>
+<div class="collage-card-ticket-body">
+<p class="admit">Admit One</p>
+<p class="event">Janelas da Alma</p>
+<p class="detail">Presença · Pausa · Olhar</p>
+</div>
+</div>
+<div class="collage-ticket-tear" aria-hidden="true"></div>
+<div class="collage-barcode" aria-hidden="true">
+<span style="height:18px"></span><span style="height:22px"></span><span style="height:14px"></span><span style="height:24px"></span><span style="height:16px"></span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<!-- Fold 02 — Caminhos -->
+<section class="fold-two" aria-labelledby="fold-two-title">
+
+<div class="fold-two-sep" aria-hidden="true"></div>
+
+<div class="fold-marquee" aria-hidden="true">
+<div class="fold-marquee-track">
+<div class="fold-marquee-item"><span>Presença</span><em>·</em><span>Pausa</span><em>·</em><span>Olhar</span><em>·</em><span>Luz &amp; Sombra</span><em>·</em><span>Essência</span><em>·</em><span>Contemplação</span><em>·</em><span>Refinamento</span><em>·</em><span>Identidade</span><em>·</em></div>
+<div class="fold-marquee-item" aria-hidden="true"><span>Presença</span><em>·</em><span>Pausa</span><em>·</em><span>Olhar</span><em>·</em><span>Luz &amp; Sombra</span><em>·</em><span>Essência</span><em>·</em><span>Contemplação</span><em>·</em><span>Refinamento</span><em>·</em><span>Identidade</span><em>·</em></div>
+</div>
+</div>
+
+<header class="fold-two-head">
+<div class="fold-two-badge fold-reveal">02 · Caminhos</div>
+<h2 id="fold-two-title" class="fold-two-title fold-reveal" data-fold-delay="0.05">Três portas para<br><em>a contemplação</em></h2>
+<p class="fold-two-lead fold-reveal" data-fold-delay="0.1">Cada caminho convida a uma forma diferente de olhar. Escolha por onde entrar — ou deixe-se guiar pelo silêncio entre uma página e outra.</p>
+</header>
+
+<div class="fold-bento">
+
+<a href="HorizontesDaMinhaM.html" class="fold-card fold-card--featured fold-reveal" data-fold-delay="0">
+<span class="fold-card-bracket fold-card-bracket--tl" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--tr" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--bl" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--br" aria-hidden="true"></span>
+<span class="fold-card-num">01</span>
+<div class="fold-card-visual fold-card-visual--horizontes">
+<img src="assets/hero/horizontes.png" alt="Lago ao amanhecer com barco — Horizontes da minha mente" width="768" height="1024" loading="lazy">
+<div class="fold-card-visual-overlay" aria-hidden="true"></div>
+</div>
+<div class="fold-card-body">
+<p class="fold-card-meta">Série editorial</p>
+<h3 class="fold-card-title">Horizontes da minha mente</h3>
+<p class="fold-card-desc">Reflexões que expandem o olhar interior — onde pensamento e imaginação se encontram em pausa.</p>
+<span class="fold-card-arrow">Explorar<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</div>
+</a>
+
+<a href="#" class="fold-card fold-reveal" data-fold-delay="0.08">
+<span class="fold-card-bracket fold-card-bracket--tl" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--tr" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--bl" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--br" aria-hidden="true"></span>
+<span class="fold-card-num">02</span>
+<div class="fold-card-visual fold-card-visual--pensadores">
+<img src="assets/hero/pensadores.jpg" alt="Três pensadores em contemplação — leitura, reflexão e escrita" width="960" height="540" loading="lazy">
+<div class="fold-card-visual-overlay" aria-hidden="true"></div>
+</div>
+<div class="fold-card-body">
+<p class="fold-card-meta">Arquivo de vozes</p>
+<h3 class="fold-card-title">Pensadores</h3>
+<p class="fold-card-desc">Vozes que atravessam o tempo e convidam à pausa — citações, ensaios e encontros.</p>
+<span class="fold-card-arrow">Explorar<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</div>
+</a>
+
+<a href="#" class="fold-card fold-reveal" data-fold-delay="0.14">
+<span class="fold-card-bracket fold-card-bracket--tl" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--tr" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--bl" aria-hidden="true"></span>
+<span class="fold-card-bracket fold-card-bracket--br" aria-hidden="true"></span>
+<span class="fold-card-num">03</span>
+<div class="fold-card-visual fold-card-visual--essencias">
+<img src="assets/hero/essencias.png" alt="Vitrine com essências naturais — Essências para a alma" width="768" height="1024" loading="lazy">
+<div class="fold-card-visual-overlay" aria-hidden="true"></div>
+</div>
+<div class="fold-card-body">
+<p class="fold-card-meta">Curadoria sensorial</p>
+<h3 class="fold-card-title">Essências para a alma</h3>
+<p class="fold-card-desc">Fragrâncias de sentido — textos, sons e imagens curados para contemplar devagar.</p>
+<span class="fold-card-arrow">Explorar<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+</div>
+</a>
+
+</div>
+
+<div class="fold-deep fold-reveal" data-fold-delay="0.1">
+<div class="fold-deep-grid" aria-hidden="true"></div>
+<blockquote class="fold-deep-quote">
+“Não se trata de consumir conteúdo — trata-se de habitar o instante com atenção plena.”
+<cite>Manifesto · Janelas da Alma</cite>
+</blockquote>
+<a href="#" class="fold-deep-btn">
+<span>Aprofunde-se</span>
+<span class="fold-deep-btn-icon" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 200 200" fill="none"><path d="M178.7 178.4V38.6H21.8V21.4h156.9v157Z" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/></svg>
+</span>
+</a>
+</div>
+
+</section>
+
+<!-- Creative Credit -->
+<footer class="creator-credit fold-reveal" data-fold-delay="0.08" aria-label="Créditos de criação">
+<div class="creator-credit-line" aria-hidden="true"></div>
+<div class="creator-card">
+<span class="creator-kicker">Concebido e lapidado por</span>
+<p class="creator-name">Vinicius Castellar Quadros</p>
+<p class="creator-note">Direção visual, atmosfera e experiência editorial para Janelas da Alma.</p>
+</div>
+</footer>
+
+</div>
+</main>
+
+<script src="assets/hero/gsap.min.js"></script>
+<script src="assets/hero/hero.js?v=20260604-1550"></script>
+<script src="assets/hero/fold-two.js?v=20260604-1550"></script>
+</body>
+</html>
