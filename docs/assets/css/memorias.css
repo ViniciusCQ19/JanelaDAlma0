@@ -1,0 +1,14 @@
+/* Momentos que Viraram Memórias — ajustes da primeira dobra */
+
+.memorias-hero-media img {
+  object-position: center 18%;
+  filter: saturate(0.94) contrast(1.04) brightness(0.98);
+}
+
+.memorias-hero:hover .memorias-hero-media img {
+  filter: saturate(1.02) contrast(1.06) brightness(1);
+}
+
+.memorias-page .horizon-grid {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}

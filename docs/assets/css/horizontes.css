@@ -1,0 +1,508 @@
+:root {
+  --paper: #f5efe3;
+  --paper-soft: #fffaf1;
+  --ink: #213c30;
+  --muted: #776b5b;
+  --gold: #b88a05;
+  --line: rgba(67, 55, 38, 0.14);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,255,255,0.58), transparent 24rem),
+    radial-gradient(circle at 90% 70%, rgba(66, 50, 31, 0.22), transparent 34rem),
+    linear-gradient(135deg, #b49c78, #947653);
+}
+
+.horizon-page {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0.75rem auto 1rem;
+  padding: clamp(1rem, 2.5vw, 1.65rem);
+  border-radius: 2rem;
+  border: 1px solid rgba(255,255,255,0.38);
+  background:
+    linear-gradient(135deg, rgba(255,252,246,0.88), rgba(243,234,218,0.94)),
+    radial-gradient(circle at 80% 0%, rgba(184,138,5,0.08), transparent 22rem);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.55) inset,
+    0 28px 80px -38px rgba(63, 48, 34, 0.55);
+  overflow: hidden;
+}
+
+.horizon-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(0.85rem, 2vw, 1.4rem);
+}
+
+.horizon-logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.42rem;
+  border: 1px solid rgba(255,255,255,0.46);
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.18);
+  transition: transform 0.45s var(--ease), background 0.45s ease, box-shadow 0.45s ease;
+}
+
+.horizon-logo:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.38);
+  box-shadow: 0 14px 28px -22px rgba(63,48,34,0.58);
+}
+
+.horizon-logo img {
+  display: block;
+  width: clamp(6.5rem, 11.5vw, 8.75rem);
+  height: auto;
+  filter: drop-shadow(0 8px 12px rgba(138,106,67,0.16));
+}
+
+.horizon-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border: 1px solid rgba(33, 60, 48, 0.12);
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(255,255,255,0.4);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: transform 0.45s var(--ease), background 0.45s ease;
+}
+
+.horizon-back:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.7);
+}
+
+.horizon-hero {
+  position: relative;
+  display: block;
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  padding: 0 0 clamp(1.15rem, 2.5vw, 1.7rem);
+}
+
+.horizon-hero::before {
+  content: '';
+  position: absolute;
+  inset: auto -2rem 0 -2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(33, 60, 48, 0.18), transparent);
+  z-index: 2;
+}
+
+.horizon-hero-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(32rem, 72vh, 46rem);
+  padding: clamp(1.75rem, 4vw, 3rem) 0;
+  overflow: hidden;
+}
+
+.horizon-hero-glow {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  width: min(32rem, 52vw);
+  height: min(24rem, 44vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 138, 5, 0.14), transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(8px);
+}
+
+/* Retrato dominante — mais presente na composição */
+.horizon-hero-media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 38%;
+  margin: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 36px 72px -36px rgba(63, 48, 34, 0.5);
+  animation: horizon-feature-in 1.25s var(--ease) 0.1s both;
+  will-change: transform;
+}
+
+.horizon-hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 16%;
+  filter: saturate(0.94) contrast(1.05) brightness(0.98);
+  transition: transform 1.4s var(--ease), filter 1.4s ease;
+}
+
+.horizon-hero:hover .horizon-hero-media img {
+  transform: scale(1.03);
+  filter: saturate(1) contrast(1.06) brightness(1);
+}
+
+.horizon-hero-media-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(245, 239, 227, 0.72) 0%, rgba(245, 239, 227, 0.18) 22%, transparent 42%),
+    linear-gradient(180deg, rgba(12, 18, 15, 0.06) 0%, transparent 24%),
+    linear-gradient(0deg, rgba(12, 18, 15, 0.18) 0%, transparent 28%);
+}
+
+.horizon-hero-copy {
+  position: relative;
+  z-index: 3;
+  max-width: min(30rem, 44%);
+  padding-left: 1.15rem;
+  animation: horizon-copy-in 1.1s var(--ease) both;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+}
+
+.horizon-hero-copy::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gold), rgba(184, 138, 5, 0.08));
+}
+
+.horizon-hero h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.horizon-title-line {
+  display: block;
+  font-size: clamp(2.35rem, 4.8vw, 3.85rem);
+}
+
+.horizon-title-accent {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: clamp(2.1rem, 4.2vw, 3.35rem);
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(33, 60, 48, 0.78);
+}
+
+.horizon-lead {
+  max-width: 22rem;
+  margin: 1.35rem 0 0;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+  line-height: 1.7;
+}
+
+.horizon-marquee {
+  margin: -0.2rem -2rem clamp(1.5rem, 4vw, 2.5rem);
+  padding: 0.8rem 0;
+  overflow: hidden;
+  border-block: 1px solid rgba(33, 60, 48, 0.08);
+  background: rgba(255,255,255,0.24);
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.horizon-marquee div {
+  display: flex;
+  width: max-content;
+  animation: horizon-marquee 24s linear infinite;
+}
+
+.horizon-marquee span,
+.horizon-marquee em {
+  padding-right: 1rem;
+  color: rgba(33, 60, 48, 0.52);
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.horizon-marquee em {
+  color: var(--gold);
+}
+
+.horizon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.horizon-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 1rem 1rem 0.9rem;
+  border: 1px solid rgba(33, 60, 48, 0.1);
+  border-radius: 1.05rem;
+  background: rgba(255, 252, 246, 0.55);
+  transition: transform 0.55s var(--ease), box-shadow 0.55s ease, border-color 0.55s ease;
+  overflow: hidden;
+}
+
+.horizon-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 138, 5, 0.24);
+  box-shadow: 0 20px 40px -28px rgba(63, 48, 34, 0.5);
+}
+
+.horizon-card-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 0.35rem;
+}
+
+.card-index {
+  color: rgba(33, 60, 48, 0.34);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.horizon-card h2 {
+  margin: 0;
+  min-height: 2.6em;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.horizon-card .card-desc {
+  flex: 1;
+  min-height: 2.6rem;
+  margin: 0.15rem 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.horizon-card .card-desc:empty {
+  display: none;
+  min-height: 0;
+  margin: 0 0 0.65rem;
+}
+
+.horizon-card a {
+  margin-top: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.58rem 0.75rem;
+  border-radius: 999px;
+  color: #fffaf1;
+  background: linear-gradient(135deg, #b88a05, #9b7200);
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform 0.45s var(--ease), background 0.45s ease, box-shadow 0.45s ease;
+}
+
+.horizon-card a:hover {
+  transform: translateY(-1px);
+  background: #9b7200;
+  box-shadow: 0 12px 22px -16px rgba(76, 54, 0, 0.8);
+}
+
+.horizon-card--soon {
+  background: rgba(255, 252, 246, 0.35);
+  border-style: dashed;
+  border-color: rgba(33, 60, 48, 0.12);
+}
+
+.horizon-card--soon:hover {
+  transform: none;
+  border-color: rgba(184, 138, 5, 0.2);
+  box-shadow: none;
+}
+
+.horizon-card--soon h2 {
+  color: rgba(33, 60, 48, 0.55);
+  font-style: italic;
+}
+
+.card-soon-label {
+  margin-top: auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.58rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(33, 60, 48, 0.12);
+  background: rgba(255, 255, 255, 0.4);
+  color: rgba(33, 60, 48, 0.55);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 980px) {
+  .horizon-hero-stage {
+    min-height: auto;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .horizon-hero-media {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    max-height: 38rem;
+    border-radius: 1.55rem;
+    order: 1;
+  }
+
+  .horizon-hero-media-shade {
+    background:
+      linear-gradient(180deg, rgba(12, 18, 15, 0.08) 0%, transparent 28%),
+      linear-gradient(0deg, rgba(12, 18, 15, 0.2) 0%, transparent 32%);
+  }
+
+  .horizon-hero-copy {
+    max-width: none;
+    order: 2;
+    padding-left: 0.95rem;
+  }
+
+  .horizon-lead {
+    max-width: 28rem;
+  }
+}
+
+@media (max-width: 820px) {
+  .horizon-hero {
+    min-height: auto;
+  }
+
+  .horizon-hero-glow {
+    top: auto;
+    bottom: 18%;
+    right: 50%;
+    transform: translateX(50%);
+    width: 18rem;
+    height: 12rem;
+  }
+
+  .horizon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@keyframes horizon-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes horizon-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes horizon-feature-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 520px) {
+  .horizon-page {
+    width: calc(100% - 1rem);
+    margin: 0.5rem auto;
+    border-radius: 1.35rem;
+  }
+
+  .horizon-nav {
+    margin-bottom: 2rem;
+  }
+
+  .horizon-title-line {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .horizon-title-accent {
+    font-size: clamp(1.85rem, 8vw, 2.45rem);
+  }
+
+  .horizon-card {
+    padding: 0.85rem;
+  }
+
+  .horizon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .horizon-hero-media {
+    max-height: 28rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .horizon-hero-copy,
+  .horizon-hero-media {
+    animation: none;
+  }
+
+  .horizon-hero:hover .horizon-hero-media img {
+    transform: none;
+  }
+}
