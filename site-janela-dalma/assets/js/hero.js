@@ -86,23 +86,32 @@
         const video = intro?.querySelector('.site-intro-video');
         const isMobile = matchMedia('(max-width: 767px)').matches
             || matchMedia('(hover: none) and (pointer: coarse)').matches;
-        const canAnimate = !reduced && !isMobile && typeof gsap !== 'undefined';
+        const canAnimate = !reduced && typeof gsap !== 'undefined';
 
         let finished = false;
         let fallbackTimer;
+        let hardTimer;
 
         const unlockShell = () => {
             document.documentElement.classList.remove('intro-lock');
+            document.documentElement.classList.add('intro-ready');
+            if (intro) intro.classList.add('is-leaving');
         };
 
         const revealHero = () => {
             if (finished) return;
             finished = true;
             window.clearTimeout(fallbackTimer);
+            window.clearTimeout(hardTimer);
             unlockShell();
 
             if (!canAnimate) {
-                if (intro) intro.remove();
+                if (intro) {
+                    intro.style.transition = 'opacity 0.45s ease, visibility 0.45s ease';
+                    intro.style.opacity = '0';
+                    intro.style.visibility = 'hidden';
+                    window.setTimeout(() => intro.remove(), 480);
+                }
                 return;
             }
 
@@ -114,48 +123,49 @@
             });
 
             if (intro) {
-                tl.to(intro, { autoAlpha: 0, duration: 0.55, ease: 'sine.inOut' })
+                tl.to(intro, { autoAlpha: 0, duration: isMobile ? 0.4 : 0.55, ease: 'sine.inOut' })
                     .from('.page-shell', {
-                        y: 14,
-                        scale: 0.992,
+                        y: isMobile ? 10 : 14,
+                        scale: isMobile ? 0.995 : 0.992,
                         autoAlpha: 0,
-                        filter: 'blur(5px)',
-                        duration: 1.05,
+                        filter: isMobile ? 'blur(3px)' : 'blur(5px)',
+                        duration: isMobile ? 0.85 : 1.05,
                         clearProps: 'all'
-                    }, '-=0.12');
+                    }, '-=0.1');
             }
 
-            tl.from('.site-nav-pill', { y: -14, autoAlpha: 0, duration: 1.05 }, intro ? '-=0.3' : 0)
-            .from('.hero-badge', { y: 18, autoAlpha: 0, duration: 1.05 }, '-=0.55')
-            .from('.hero-title-line', { y: 34, autoAlpha: 0, duration: 1.1, stagger: 0.2 }, '-=0.65')
+            const navAt = intro ? (isMobile ? '-=0.2' : '-=0.3') : 0;
+            tl.from('.site-nav-pill', { y: isMobile ? -10 : -14, autoAlpha: 0, duration: isMobile ? 0.85 : 1.05 }, navAt)
+            .from('.hero-badge', { y: isMobile ? 12 : 18, autoAlpha: 0, duration: isMobile ? 0.85 : 1.05 }, '-=0.55')
+            .from('.hero-title-line', { y: isMobile ? 22 : 34, autoAlpha: 0, duration: isMobile ? 0.9 : 1.1, stagger: isMobile ? 0.12 : 0.2 }, '-=0.65')
             .from('.hero-rule', {
                 scaleX: 0,
                 autoAlpha: 0,
-                duration: 1.05,
+                duration: isMobile ? 0.85 : 1.05,
                 transformOrigin: 'left center'
             }, '-=0.55')
-            .from('.hero-lead', { y: 24, autoAlpha: 0, duration: 1.05 }, '-=0.45')
-            .from('.hero-sub', { y: 24, autoAlpha: 0, duration: 1.05, ease: 'power2.out' }, '-=0.75')
-            .from('.hero-profile', { y: 18, autoAlpha: 0, duration: 1, ease: 'power2.out' }, '-=0.65')
-            .from('.hero-btn', { y: 20, autoAlpha: 0, duration: 1, stagger: 0.14 }, '-=0.55')
-            .from('.hero-signature > *', { y: 14, autoAlpha: 0, duration: 1, stagger: 0.12 }, '-=0.5')
+            .from('.hero-lead', { y: isMobile ? 16 : 24, autoAlpha: 0, duration: isMobile ? 0.85 : 1.05 }, '-=0.45')
+            .from('.hero-sub', { y: isMobile ? 16 : 24, autoAlpha: 0, duration: isMobile ? 0.85 : 1.05, ease: 'power2.out' }, '-=0.75')
+            .from('.hero-profile', { y: isMobile ? 12 : 18, autoAlpha: 0, duration: isMobile ? 0.8 : 1, ease: 'power2.out' }, '-=0.65')
+            .from('.hero-btn', { y: isMobile ? 14 : 20, autoAlpha: 0, duration: isMobile ? 0.8 : 1, stagger: 0.12 }, '-=0.55')
+            .from('.hero-signature > *', { y: 12, autoAlpha: 0, duration: isMobile ? 0.8 : 1, stagger: 0.1 }, '-=0.5')
             .from('.collage-arch', {
-                y: 36,
+                y: isMobile ? 24 : 36,
                 autoAlpha: 0,
                 scale: 0.97,
-                duration: 1.35,
+                duration: isMobile ? 1.05 : 1.35,
                 clearProps: 'transform'
             }, '-=1.05')
             .from('.collage-card-dark', {
-                y: 28,
+                y: isMobile ? 18 : 28,
                 autoAlpha: 0,
-                duration: 1.2,
+                duration: isMobile ? 0.95 : 1.2,
                 clearProps: 'transform'
             }, '-=0.9')
             .from('.collage-card-ticket', {
-                y: 30,
+                y: isMobile ? 18 : 30,
                 autoAlpha: 0,
-                duration: 1.2,
+                duration: isMobile ? 0.95 : 1.2,
                 ease: 'power2.out',
                 clearProps: 'transform'
             }, '-=0.85')
@@ -163,44 +173,66 @@
                 scale: 0.72,
                 autoAlpha: 0,
                 rotation: -28,
-                duration: 1.25,
+                duration: isMobile ? 1 : 1.25,
                 ease: 'power2.out',
                 clearProps: 'transform'
             }, '-=0.95');
-
         };
 
-        // Mobile: skip intro video — autoplay/codecs often leave the shell locked blank.
-        if (isMobile || reduced || !video) {
+        if (reduced || !video) {
             revealHero();
             return;
         }
 
+        // Keep intro animation on mobile; tune playback for phones.
         video.muted = true;
         video.defaultMuted = true;
+        video.setAttribute('muted', '');
         video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
         video.playsInline = true;
-        video.playbackRate = 1.12;
+        video.preload = 'auto';
+        video.playbackRate = isMobile ? 1.25 : 1.12;
+
+        const maxWait = isMobile ? 4200 : 5500;
 
         const setFallback = () => {
             window.clearTimeout(fallbackTimer);
-            const duration = Number.isFinite(video.duration) && video.duration > 0
-                ? Math.min((video.duration / video.playbackRate + 0.8) * 1000, 4500)
-                : 2500;
-            fallbackTimer = window.setTimeout(revealHero, duration);
+            let wait = maxWait;
+            if (Number.isFinite(video.duration) && video.duration > 0) {
+                wait = Math.min((video.duration / video.playbackRate + 0.35) * 1000, maxWait);
+            }
+            fallbackTimer = window.setTimeout(revealHero, wait);
         };
 
         video.addEventListener('loadedmetadata', setFallback, { once: true });
         video.addEventListener('ended', revealHero, { once: true });
         video.addEventListener('error', revealHero, { once: true });
-        video.addEventListener('stalled', () => window.setTimeout(revealHero, 800), { once: true });
+        video.addEventListener('stalled', () => window.setTimeout(revealHero, isMobile ? 900 : 1200), { once: true });
+        video.addEventListener('waiting', () => {
+            window.clearTimeout(fallbackTimer);
+            fallbackTimer = window.setTimeout(revealHero, isMobile ? 1400 : 2000);
+        });
         setFallback();
-        // Absolute safety net
-        window.setTimeout(revealHero, 5000);
+        hardTimer = window.setTimeout(revealHero, maxWait + 800);
 
-        const playPromise = video.play();
-        if (playPromise) {
-            playPromise.catch(() => window.setTimeout(revealHero, 200));
+        const tryPlay = () => {
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.then === 'function') {
+                playPromise.catch(() => {
+                    // Retry once after a tick (common on iOS), then reveal if still blocked.
+                    window.setTimeout(() => {
+                        video.play().catch(() => window.setTimeout(revealHero, 280));
+                    }, 120);
+                });
+            }
+        };
+
+        if (video.readyState >= 2) {
+            tryPlay();
+        } else {
+            video.addEventListener('canplay', tryPlay, { once: true });
+            tryPlay();
         }
     }
 
