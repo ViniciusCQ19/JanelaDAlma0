@@ -84,18 +84,24 @@
     function initEntrance() {
         const intro = document.querySelector('.site-intro');
         const video = intro?.querySelector('.site-intro-video');
-        const canAnimate = !reduced && typeof gsap !== 'undefined';
+        const isMobile = matchMedia('(max-width: 767px)').matches
+            || matchMedia('(hover: none) and (pointer: coarse)').matches;
+        const canAnimate = !reduced && !isMobile && typeof gsap !== 'undefined';
 
         let finished = false;
         let fallbackTimer;
+
+        const unlockShell = () => {
+            document.documentElement.classList.remove('intro-lock');
+        };
 
         const revealHero = () => {
             if (finished) return;
             finished = true;
             window.clearTimeout(fallbackTimer);
+            unlockShell();
 
             if (!canAnimate) {
-                document.documentElement.classList.remove('intro-lock');
                 if (intro) intro.remove();
                 return;
             }
@@ -109,17 +115,14 @@
 
             if (intro) {
                 tl.to(intro, { autoAlpha: 0, duration: 0.55, ease: 'sine.inOut' })
-                    .call(() => document.documentElement.classList.remove('intro-lock'))
                     .from('.page-shell', {
                         y: 14,
                         scale: 0.992,
                         autoAlpha: 0,
                         filter: 'blur(5px)',
                         duration: 1.05,
-                        clearProps: 'transform,filter'
+                        clearProps: 'all'
                     }, '-=0.12');
-            } else {
-                document.documentElement.classList.remove('intro-lock');
             }
 
             tl.from('.site-nav-pill', { y: -14, autoAlpha: 0, duration: 1.05 }, intro ? '-=0.3' : 0)
@@ -167,31 +170,37 @@
 
         };
 
-        if (!video) {
+        // Mobile: skip intro video — autoplay/codecs often leave the shell locked blank.
+        if (isMobile || reduced || !video) {
             revealHero();
             return;
         }
 
         video.muted = true;
         video.defaultMuted = true;
+        video.setAttribute('playsinline', '');
+        video.playsInline = true;
         video.playbackRate = 1.12;
 
         const setFallback = () => {
             window.clearTimeout(fallbackTimer);
-            const duration = Number.isFinite(video.duration)
-                ? (video.duration / video.playbackRate + 1.5) * 1000
-                : 12000;
+            const duration = Number.isFinite(video.duration) && video.duration > 0
+                ? Math.min((video.duration / video.playbackRate + 0.8) * 1000, 4500)
+                : 2500;
             fallbackTimer = window.setTimeout(revealHero, duration);
         };
 
         video.addEventListener('loadedmetadata', setFallback, { once: true });
         video.addEventListener('ended', revealHero, { once: true });
         video.addEventListener('error', revealHero, { once: true });
+        video.addEventListener('stalled', () => window.setTimeout(revealHero, 800), { once: true });
         setFallback();
+        // Absolute safety net
+        window.setTimeout(revealHero, 5000);
 
         const playPromise = video.play();
         if (playPromise) {
-            playPromise.catch(() => window.setTimeout(revealHero, 350));
+            playPromise.catch(() => window.setTimeout(revealHero, 200));
         }
     }
 

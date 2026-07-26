@@ -82,42 +82,50 @@
     }
 
     function initEntrance() {
-        if (reduced || typeof gsap === 'undefined') {
-            const intro = document.querySelector('.site-intro');
-            window.setTimeout(() => {
-                document.documentElement.classList.remove('intro-lock');
-                if (intro) intro.remove();
-            }, 2100);
-            return;
-        }
-
-        const ease = 'power2.out';
         const intro = document.querySelector('.site-intro');
+        const video = intro?.querySelector('.site-intro-video');
+        const isMobile = matchMedia('(max-width: 767px)').matches
+            || matchMedia('(hover: none) and (pointer: coarse)').matches;
+        const canAnimate = !reduced && !isMobile && typeof gsap !== 'undefined';
 
-        const tl = gsap.timeline({
-            defaults: { ease },
-            onComplete: () => {
-                if (intro) intro.remove();
-            }
-        });
+        let finished = false;
+        let fallbackTimer;
 
-        if (intro) {
-            tl.set('.site-intro-logo', { autoAlpha: 1 })
-                .from('.site-intro-glow', { scale: 0.6, autoAlpha: 0, duration: 0.65, ease: 'sine.out' })
-                .from('.site-intro-logo', { y: 8, scale: 0.965, autoAlpha: 0, filter: 'blur(6px)', duration: 0.95, ease: 'power2.out' }, '-=0.45')
-                .from('.site-intro-line', { scaleX: 0, autoAlpha: 0, duration: 0.7, transformOrigin: 'center' }, '-=0.35')
-                .from('.site-intro-note', { y: 8, autoAlpha: 0, filter: 'blur(3px)', duration: 0.62, ease: 'power2.out' }, '-=0.18')
-                .addLabel('introFullyVisible')
-                .to('.site-intro-card', { scale: 1.006, duration: 0.9, ease: 'none' })
-                .to('.site-intro-card', { y: -6, autoAlpha: 0, filter: 'blur(5px)', duration: 1.25, ease: 'sine.inOut' })
-                .to(intro, { autoAlpha: 0, duration: 1.2, ease: 'sine.inOut' }, '-=0.65')
-                .call(() => document.documentElement.classList.remove('intro-lock'))
-                .from('.page-shell', { y: 14, scale: 0.992, autoAlpha: 0, filter: 'blur(5px)', duration: 1.25, clearProps: 'transform,filter' }, '-=0.2');
-        } else {
+        const unlockShell = () => {
             document.documentElement.classList.remove('intro-lock');
-        }
+        };
 
-        tl.from('.site-nav-pill', { y: -14, autoAlpha: 0, duration: 1.05 }, intro ? '-=0.35' : 0)
+        const revealHero = () => {
+            if (finished) return;
+            finished = true;
+            window.clearTimeout(fallbackTimer);
+            unlockShell();
+
+            if (!canAnimate) {
+                if (intro) intro.remove();
+                return;
+            }
+
+            const tl = gsap.timeline({
+                defaults: { ease: 'power2.out' },
+                onComplete: () => {
+                    if (intro) intro.remove();
+                }
+            });
+
+            if (intro) {
+                tl.to(intro, { autoAlpha: 0, duration: 0.55, ease: 'sine.inOut' })
+                    .from('.page-shell', {
+                        y: 14,
+                        scale: 0.992,
+                        autoAlpha: 0,
+                        filter: 'blur(5px)',
+                        duration: 1.05,
+                        clearProps: 'all'
+                    }, '-=0.12');
+            }
+
+            tl.from('.site-nav-pill', { y: -14, autoAlpha: 0, duration: 1.05 }, intro ? '-=0.3' : 0)
             .from('.hero-badge', { y: 18, autoAlpha: 0, duration: 1.05 }, '-=0.55')
             .from('.hero-title-line', { y: 34, autoAlpha: 0, duration: 1.1, stagger: 0.2 }, '-=0.65')
             .from('.hero-rule', {
@@ -128,9 +136,9 @@
             }, '-=0.55')
             .from('.hero-lead', { y: 24, autoAlpha: 0, duration: 1.05 }, '-=0.45')
             .from('.hero-sub', { y: 24, autoAlpha: 0, duration: 1.05, ease: 'power2.out' }, '-=0.75')
+            .from('.hero-profile', { y: 18, autoAlpha: 0, duration: 1, ease: 'power2.out' }, '-=0.65')
             .from('.hero-btn', { y: 20, autoAlpha: 0, duration: 1, stagger: 0.14 }, '-=0.55')
-            .from('.hero-stat', { y: 18, autoAlpha: 0, duration: 1, stagger: 0.12 }, '-=0.5')
-            .from('.hero-footnote', { y: 12, autoAlpha: 0, duration: 1.1, ease: 'power2.out' }, '-=0.6')
+            .from('.hero-signature > *', { y: 14, autoAlpha: 0, duration: 1, stagger: 0.12 }, '-=0.5')
             .from('.collage-arch', {
                 y: 36,
                 autoAlpha: 0,
@@ -159,6 +167,41 @@
                 ease: 'power2.out',
                 clearProps: 'transform'
             }, '-=0.95');
+
+        };
+
+        // Mobile: skip intro video — autoplay/codecs often leave the shell locked blank.
+        if (isMobile || reduced || !video) {
+            revealHero();
+            return;
+        }
+
+        video.muted = true;
+        video.defaultMuted = true;
+        video.setAttribute('playsinline', '');
+        video.playsInline = true;
+        video.playbackRate = 1.12;
+
+        const setFallback = () => {
+            window.clearTimeout(fallbackTimer);
+            const duration = Number.isFinite(video.duration) && video.duration > 0
+                ? Math.min((video.duration / video.playbackRate + 0.8) * 1000, 4500)
+                : 2500;
+            fallbackTimer = window.setTimeout(revealHero, duration);
+        };
+
+        video.addEventListener('loadedmetadata', setFallback, { once: true });
+        video.addEventListener('ended', revealHero, { once: true });
+        video.addEventListener('error', revealHero, { once: true });
+        video.addEventListener('stalled', () => window.setTimeout(revealHero, 800), { once: true });
+        setFallback();
+        // Absolute safety net
+        window.setTimeout(revealHero, 5000);
+
+        const playPromise = video.play();
+        if (playPromise) {
+            playPromise.catch(() => window.setTimeout(revealHero, 200));
+        }
     }
 
     initReadingProgress();
