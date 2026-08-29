@@ -179,7 +179,9 @@
             }, '-=0.95');
         };
 
-        if (reduced || !video) {
+        // Always show the opening video (even with reduced motion).
+        // Only the post-intro hero choreography respects prefers-reduced-motion.
+        if (!intro || !video) {
             revealHero();
             return;
         }
@@ -187,14 +189,16 @@
         // Keep intro animation on mobile; tune playback for phones.
         video.muted = true;
         video.defaultMuted = true;
+        video.volume = 0;
         video.setAttribute('muted', '');
         video.setAttribute('playsinline', '');
         video.setAttribute('webkit-playsinline', '');
         video.playsInline = true;
         video.preload = 'auto';
-        video.playbackRate = isMobile ? 1.25 : 1.12;
+        video.currentTime = 0;
+        video.playbackRate = isMobile ? 1.08 : 1.0;
 
-        const maxWait = isMobile ? 4200 : 5500;
+        const maxWait = isMobile ? 5200 : 6500;
 
         const setFallback = () => {
             window.clearTimeout(fallbackTimer);
