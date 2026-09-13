@@ -1,106 +1,201 @@
-/* Página individual de conto */
+/* =========================================================
+   Contos — leitura editorial (mobile-first)
+   ========================================================= */
 
-.conto-page {
-  padding-bottom: clamp(2rem, 4vw, 3rem);
+.conto {
+  --conto-ink: #14110e;
+  --conto-muted: #5a5248;
+  --conto-rule: rgba(33, 60, 48, 0.14);
+  --conto-measure: min(38rem, 100%);
+  --conto-gap: clamp(1.15rem, 3.2vw, 1.55rem);
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 0 clamp(2.5rem, 8vw, 4.5rem);
 }
 
-.conto-hero {
-  width: 100%;
-  max-width: none;
-  margin: 0 0 clamp(1.5rem, 3vw, 2.25rem);
-  padding: 0.85rem 0 1.5rem;
-  border-bottom: 1px solid rgba(33, 60, 48, 0.1);
-  text-align: center;
+/* —— Cabeçalho —— */
+.conto-header {
+  max-width: var(--conto-measure);
+  margin: 0 auto clamp(1.75rem, 5vw, 2.75rem);
+  text-align: left;
 }
 
 .conto-kicker {
-  margin: 0 auto 1.25rem;
-  max-width: 42rem;
-  color: #b88a05;
-  font-size: clamp(0.78rem, 1.6vw, 0.92rem);
-  font-weight: 700;
+  display: block;
+  margin: 0 0 0.85rem;
+  color: #6b6258;
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 650;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 
 .conto-title {
-  margin: 0 auto;
-  max-width: min(22ch, 92vw);
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2.35rem, 5.5vw, 4.25rem);
-  font-weight: 500;
-  line-height: 1.05;
+  margin: 0;
+  max-width: none;
+  color: var(--conto-ink);
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 8.2vw, 2.85rem);
+  font-weight: 650;
   letter-spacing: -0.03em;
-  color: #213c30;
-  text-align: center;
+  line-height: 1.12;
   text-wrap: balance;
 }
 
-.conto-body {
-  display: grid;
-  gap: 1.25rem;
-  max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
+.conto-subtitle {
+  margin: 0.85rem 0 0;
+  max-width: 34rem;
+  color: var(--conto-muted);
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.05rem, 3.6vw, 1.28rem);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  text-wrap: pretty;
 }
 
+/* —— Bloco de texto —— */
 .conto-block {
-  padding: clamp(1.35rem, 3vw, 2.25rem);
-  border: 1px solid rgba(33, 60, 48, 0.1);
-  border-radius: 1.25rem;
-  background: rgba(255, 252, 246, 0.55);
+  max-width: var(--conto-measure);
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .conto-prose {
-  color: #1a1714;
-  font-size: clamp(1.1rem, 1.9vw, 1.22rem);
-  line-height: 1.85;
+  margin: 0;
+  color: var(--conto-ink);
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: clamp(1.2rem, 4.1vw, 1.32rem);
+  font-weight: 450;
+  letter-spacing: -0.011em;
+  line-height: 1.78;
+  text-wrap: pretty;
+  -webkit-font-smoothing: antialiased;
 }
 
 .conto-prose p {
-  margin: 0 0 1.15rem;
+  margin: 0 0 var(--conto-gap);
 }
 
 .conto-prose p:last-child {
   margin-bottom: 0;
 }
 
-.conto-quote {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
-  font-style: italic;
-  line-height: 1.55;
-  color: #152820;
-  padding-left: 0.85rem;
-  border-left: 2px solid rgba(184, 138, 5, 0.45);
+.conto-prose strong {
+  color: #0f0d0b;
+  font-weight: 700;
 }
 
-.conto-refrain {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.2rem, 2.1vw, 1.45rem);
+.conto-prose em {
   font-style: italic;
-  font-weight: 500;
-  color: #152820;
-  letter-spacing: -0.01em;
 }
 
+.conto-prose h2 {
+  margin: clamp(2rem, 6vw, 2.85rem) 0 0.85rem;
+  color: var(--conto-ink);
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.35rem, 4.5vw, 1.65rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.conto-prose h2:first-child {
+  margin-top: 0.35rem;
+}
+
+/* —— Ilustração —— */
 .conto-figure {
-  margin: 1.5rem 0 1.65rem;
+  max-width: none;
+  width: calc(100% + 2.3rem);
+  margin: 0.35rem -1.15rem clamp(1.75rem, 5vw, 2.5rem);
+  padding: 0;
 }
 
 .conto-figure img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0.85rem;
-  border: 1px solid rgba(33, 60, 48, 0.1);
+  max-height: min(72vh, 36rem);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .conto-figure figcaption {
-  margin-top: 0.55rem;
-  color: rgba(26, 23, 20, 0.7);
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  text-align: center;
+  margin: 0.65rem 1.15rem 0;
+  color: #6f675e;
+  font-family: "Manrope", system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  text-align: left;
+}
+
+/* —— Tablet+ —— */
+@media (min-width: 640px) {
+  .conto-header {
+    text-align: center;
+  }
+
+  .conto-kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+  }
+
+  .conto-title {
+    font-size: clamp(2.35rem, 4.5vw, 3.05rem);
+  }
+
+  .conto-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .conto-block {
+    padding: clamp(1.75rem, 3vw, 2.35rem) clamp(1.6rem, 3.2vw, 2.5rem);
+    border: 1px solid var(--conto-rule);
+    border-radius: 1.35rem;
+    background: rgba(255, 252, 247, 0.72);
+    box-shadow: 0 18px 40px -34px rgba(63, 48, 34, 0.28);
+  }
+
+  .conto-figure {
+    width: auto;
+    margin: 0.15rem 0 1.85rem;
+  }
+
+  .conto-figure img {
+    border-radius: 1rem;
+    box-shadow: 0 16px 36px -28px rgba(63, 48, 34, 0.45);
+  }
+
+  .conto-figure figcaption {
+    margin: 0.7rem 0.15rem 0;
+    text-align: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .conto-prose {
+    font-size: 1.28rem;
+    line-height: 1.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conto * {
+    transition: none !important;
+  }
 }
