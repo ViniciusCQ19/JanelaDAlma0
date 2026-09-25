@@ -430,8 +430,8 @@ html.intro-ready .page-shell {
   color: #57422a;
   font-size: 0.64rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-transform: none;
 }
 
 .hero-signature {
